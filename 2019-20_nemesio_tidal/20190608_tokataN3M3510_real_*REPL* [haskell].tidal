@@ -1,0 +1,197 @@
+GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /Users/coyarzun/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config/Tidal/ghci-tidal.conf
+tidal> import Sound.Tidal.MIDI.Context
+tidal> devices <- midiDevices
+tidal> m1 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 1"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  130  midi onset:  1 onset (relative):  "-0.130" , sched:  1
+and 3 more
+
+tidal> m2 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  5128  midi onset:  5055 onset (relative):  "-0.073" , sched:  5055
+and 3 more
+
+tidal> m3 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  8504  midi onset:  8436 onset (relative):  "-0.068" , sched:  8436
+and 3 more
+
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [176,11,127] midi now  11752  midi onset:  11649 onset (relative):  "-0.103" , sched:  11649
+and 3 more
+
+tidal> m5 <- midiStream devices "Dispositivo MIDI USB Puerto 2" 2 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 2"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 2'
+tidal> late [177,11,127] midi now  14881  midi onset:  14824 onset (relative):  "-0.057" , sched:  14824
+and 3 more
+
+tidal> m6 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  18126  midi onset:  18123 onset (relative):  "-0.003" , sched:  18123
+and 3 more
+
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  22503  midi onset:  22384 onset (relative):  "-0.119" , sched:  22384
+and 3 more
+
+tidal> m1 $ (|-| n 24) $ n "0*2"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8, ~3]"
+tidal> m4 $ (|-| n 24) $ n "[4*8]"
+tidal> m5 $ n "7 4 5 4"
+tidal> m5 $ n "7 4 5 0"
+tidal> m7 $ n "0"
+tidal> m6 $ "[-8,-1]*8"
+
+<interactive>:23:6: error:
+    • No instance for (Parseable
+                         (containers-0.5.7.1:Data.Map.Base.Map Param Value))
+        arising from the literal ‘"[-8,-1]*8"’
+    • In the second argument of ‘($)’, namely ‘"[-8,-1]*8"’
+      In the expression: m6 $ "[-8,-1]*8"
+      In an equation for ‘it’: it = m6 $ "[-8,-1]*8"
+tidal> m6 $ n "[-8,-1]*8"
+tidal> m6 silence
+tidal> m4 silence
+tidal> m5 silence
+tidal> m1 silence
+tidal> m7 silence
+tidal> m1 $ n "0"
+tidal> m1 silence
+tidal> m1 $ (|-| n 24)  $ n "0"
+tidal> m1 $ (|-| n 24)  $ n "0" #velocity (scale 0.7 1.0 rand)
+tidal> m4 $ slow 4 $ (|-| n 24) $ n "4" #dur 2
+tidal> m2 $ (|-| n 24) $ n "6*4"
+tidal> m2 $ (|-| n 24) $ n "6*4" #velocity (scale 0.6 1.0 rand)
+tidal> m7 $ n "4"
+tidal> m7 $ n "11"
+tidal> m5 $ (|-| n 12) $ n "4*4" #velocity (scale 0.6 1.0 rand)
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 12) $ n "4*4" #velocity (scale 0.6 1.0 rand)
+tidal> m6 $ n "-8*4"
+tidal> m6 $ sometimes (|+| n 12) $ n "-8*4"
+tidal> m3 $ slow 2 $ (|-| n 24) $ n "~ 3 "
+tidal> m3 $ slow 2 $ (|-| n 24) $ n "~ 3 " #velocity (1.0)
+tidal> m1 $ (|-| n 24)  $ n "0" #velocity (1.0)
+tidal> m1 silence
+tidal> m2 silence
+tidal> m3 silence
+tidal> m5 silence
+tidal> m6 silence
+tidal> m4 silence
+tidal> m1 $ e 5 8 $ n "-24"
+tidal> m1 $ e 5 8 $ n "-24" #velocity (0.9)
+tidal> m2 $ n "6*8"
+tidal> m2 $ (sometimes (|-| n 24)) $ n "6*8"
+tidal> m2 $ (sometimes (|-| n 24)) $ n "6*8" #velocity (scale 0.8 1.0 rand)
+tidal> m4 $ slow 4 $ n "4*32"
+tidal> m4 $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32" #modwheel (scale 0.0 1.0 rand)
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 12) $ slow 4 $ n "4*32" #modwheel (scale 0.0 1.0 rand)
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+
+tidal> m6 $ n "4*8"
+tidal> m6 $ (|-| n 24) $ n "[4, 7]*8"
+tidal> m3 $ (|-| n 24)  $ n "~4"
+tidal> m3 $ (|-| n 24)  $ n "~3"
+tidal> m3 $ (|-| n 24)  $ n "~2"
+tidal> m6 $ (|-| n 24) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m6 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m6 $ sometimes (|+| n 12) $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m1 silence
+tidal> m2 silence
+tidal> m3 silence
+tidal> m5 silence
+tidal> m7 silence
+tidal> m4 silence
+tidal> m6 silence
+tidal> m1 $ every 4 (e 5 8) $ n "0*2"
+tidal> m1 $ every 4 (e 5 8) $ n "0*2" #velocity (0.8)
+tidal> m1 $ (|-| n 24) $ every 4 (e 5 8) $ n "0*2" #velocity (0.8)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.7 1.0 rand)
+tidal> m1 $ (|-| n 24) $ every 4 (e 5 8) $ n "0*2" #velocity (1)
+tidal> m3 $ (|-| N 24) $ n "~3"
+
+<interactive>:83:11: error:
+    Data constructor not in scope: N :: Integer -> ParamPattern
+tidal> m3 $ (|-| n 24) $ n "~3"
+tidal> m4 $ (|-| n 24) $ n "[4 16]*4"
+tidal> m5 $ n "7 5 4 0"
+tidal> m5 $ sometimes (|+| n 12) $ n "7 5 4 0"
+tidal> m7 $ n "4"
+tidal> m5 $ sometimes (|+| n 12) $ n "7 5 4 11"
+tidal> m6 $ n "7 5 11 4"
+tidal> m6 $ sometimes (|+| n 12)  n "7 5 11 4"
+
+<interactive>:91:6: error:
+    • Couldn't match expected type ‘[Char] -> ParamPattern’
+                  with actual type ‘Pattern ParamMap’
+    • The function ‘sometimes’ is applied to three arguments,
+      but its type ‘(Pattern ParamMap -> Pattern ParamMap)
+                    -> Pattern ParamMap -> Pattern ParamMap’
+      has only two
+      In the second argument of ‘($)’, namely
+        ‘sometimes (|+| n 12) n "7 5 11 4"’
+      In the expression: m6 $ sometimes (|+| n 12) n "7 5 11 4"
+
+<interactive>:91:28: error:
+    • Couldn't match expected type ‘Pattern ParamMap’
+                  with actual type ‘Pattern Int -> ParamPattern’
+    • Probable cause: ‘n’ is applied to too few arguments
+      In the second argument of ‘sometimes’, namely ‘n’
+      In the second argument of ‘($)’, namely
+        ‘sometimes (|+| n 12) n "7 5 11 4"’
+      In the expression: m6 $ sometimes (|+| n 12) n "7 5 11 4"
+tidal> m6 $ sometimes (|+| n 12)  n "7 5 11 4"
+
+<interactive>:92:6: error:
+    • Couldn't match expected type ‘[Char] -> ParamPattern’
+                  with actual type ‘Pattern ParamMap’
+    • The function ‘sometimes’ is applied to three arguments,
+      but its type ‘(Pattern ParamMap -> Pattern ParamMap)
+                    -> Pattern ParamMap -> Pattern ParamMap’
+      has only two
+      In the second argument of ‘($)’, namely
+        ‘sometimes (|+| n 12) n "7 5 11 4"’
+      In the expression: m6 $ sometimes (|+| n 12) n "7 5 11 4"
+
+<interactive>:92:28: error:
+    • Couldn't match expected type ‘Pattern ParamMap’
+                  with actual type ‘Pattern Int -> ParamPattern’
+    • Probable cause: ‘n’ is applied to too few arguments
+      In the second argument of ‘sometimes’, namely ‘n’
+      In the second argument of ‘($)’, namely
+        ‘sometimes (|+| n 12) n "7 5 11 4"’
+      In the expression: m6 $ sometimes (|+| n 12) n "7 5 11 4"
+tidal> m6 $ n "7 5 11 4"
+tidal> m6 $ n "7 5 11 4" #duration (scale 0.1 20 rand)
+
+<interactive>:94:20: error:
+    Variable not in scope: duration :: Pattern Double -> ParamPattern
+tidal> m6 $ n "7 5 11 4" #dur (scale 0.1 20 rand)
+tidal> m6 $ sometimes (|+| n 12) $ n "7 5 11 4" #dur (scale 0.1 20 rand)
+tidal> m6 $ sometimes (fast 2) $ sometimes (|+| n 12) $ n "7 5 11 4" #dur (scale 0.1 20 rand)
+tidal> m3 $ (|-| n 24) $ n "~3" #velocity (1)
+tidal> m3 $ every 4 (e 8 8) $ (|-| n 24) $ n "~3" #velocity (1)
+tidal> m6 $ sometimes (fast 2) $ sometimes (|+| n 12) $ n "[7 5 11 4, -8]" #dur (scale 0.1 20 rand)
+tidal> m3 silence
+tidal> m5 silence
+tidal> m7 silence
+tidal> m3 $ every 4 (e 8 8) $ (|-| n 24) $ n "~3" #velocity (1)
+tidal> m7 silence
+tidal> m2 silence
+tidal> m1 silence
+tidal> m3 silence
+tidal> m5 silence
+tidal> m4 silence
+tidal> m6 silence
+tidal> 

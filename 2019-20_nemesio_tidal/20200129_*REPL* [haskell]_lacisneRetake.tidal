@@ -1,0 +1,191 @@
+GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /Users/coyarzun/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config/Tidal/ghci-tidal.conf
+tidal> import Sound.Tidal.MIDI.Context
+tidal> devices <- midiDevices
+tidal> m1 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 1"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  129  midi onset:  1 onset (relative):  "-0.128" , sched:  1
+and 3 more
+
+tidal> m1 $ (|-| n 24) $ n "0*2"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 4*8]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity "[1.0, 0.5]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity "[1.0, scale(0.1 0.5 rand)]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity scale(0.1 0.5 rand)
+
+<interactive>:10:35: error:
+    • Couldn't match expected type ‘t1 -> ParamPattern’
+                  with actual type ‘Pattern ParamMap’
+    • The function ‘velocity’ is applied to two arguments,
+      but its type ‘Pattern Double -> Pattern ParamMap’ has only one
+      In the second argument of ‘(#)’, namely
+        ‘velocity scale (0.1 0.5 rand)’
+      In the second argument of ‘($)’, namely
+        ‘n "[0*2, 6*8]" # velocity scale (0.1 0.5 rand)’
+
+<interactive>:10:44: error:
+    • Couldn't match expected type ‘Pattern Double’
+                  with actual type ‘Integer -> Integer -> f0 Integer -> f0 Integer’
+    • Probable cause: ‘scale’ is applied to too few arguments
+      In the first argument of ‘velocity’, namely ‘scale’
+      In the second argument of ‘(#)’, namely
+        ‘velocity scale (0.1 0.5 rand)’
+      In the second argument of ‘($)’, namely
+        ‘n "[0*2, 6*8]" # velocity scale (0.1 0.5 rand)’
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity (scale(0.1 0.5 rand))
+
+<interactive>:11:45: error:
+    • Couldn't match expected type ‘Pattern Double’
+                  with actual type ‘b0 -> f0 b0 -> f0 b0’
+    • Probable cause: ‘scale’ is applied to too few arguments
+      In the first argument of ‘velocity’, namely
+        ‘(scale (0.1 0.5 rand))’
+      In the second argument of ‘(#)’, namely
+        ‘velocity (scale (0.1 0.5 rand))’
+      In the second argument of ‘($)’, namely
+        ‘n "[0*2, 6*8]" # velocity (scale (0.1 0.5 rand))’
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity (scale 0.1 0.5 rand))
+
+<interactive>:12:64: error: parse error on input ‘)’
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity (scale 0.1 0.5 rand)
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity "[1.0, (scale 0.1 0.5 rand)]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity [1.0, (scale 0.1 0.5 rand)]
+
+<interactive>:15:44: error:
+    • Couldn't match expected type ‘Pattern Double’
+                  with actual type ‘[Pattern Double]’
+    • In the first argument of ‘velocity’, namely
+        ‘[1.0, (scale 0.1 0.5 rand)]’
+      In the second argument of ‘(#)’, namely
+        ‘velocity [1.0, (scale 0.1 0.5 rand)]’
+      In the second argument of ‘($)’, namely
+        ‘n "[0*2, 6*8]" # velocity [1.0, (scale 0.1 0.5 rand)]’
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity 1.0, (scale 0.1 0.5 rand)
+
+<interactive>:16:47: error: parse error on input ‘,’
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity [ 1.0, (scale 0.1 0.5 rand) ]
+
+<interactive>:17:44: error:
+    • Couldn't match expected type ‘Pattern Double’
+                  with actual type ‘[Pattern Double]’
+    • In the first argument of ‘velocity’, namely
+        ‘[1.0, (scale 0.1 0.5 rand)]’
+      In the second argument of ‘(#)’, namely
+        ‘velocity [1.0, (scale 0.1 0.5 rand)]’
+      In the second argument of ‘($)’, namely
+        ‘n "[0*2, 6*8]" # velocity [1.0, (scale 0.1 0.5 rand)]’
+tidal> m1 $ (|-| n 24) $ n "0*2" #velocity 1.0
+tidal> m2 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  324630  midi onset:  324524 onset (relative):  "-0.106" , sched:  324524
+and 3 more
+
+tidal> m1 $ (|-| n 24) $ n "0*2" #velocity 0.8
+tidal> m2 $ (|-| n 24) $ n "6*2" #velocity (scale 0.1 0.5 rand)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [176,11,127] midi now  375626  midi onset:  375543 onset (relative):  "-0.083" , sched:  375543
+and 3 more
+
+tidal> late [153,36,101] midi now  376748  midi onset:  376725 onset (relative):  "-0.023" , sched:  376725
+and 1 more
+
+tidal> m4 $ (|-| n 24) $ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m5 <- midiStream devices "Dispositivo MIDI USB Puerto 2" 2 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 2"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 2'
+tidal> late [177,11,127] midi now  428754  midi onset:  428724 onset (relative):  "-0.030" , sched:  428724
+and 3 more
+
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m6 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  471881  midi onset:  471810 onset (relative):  "-0.071" , sched:  471810
+and 3 more
+
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m6 $ (|+| n 12) $ sometimes (|+| n 12) $ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m6 $ (|+| n 12) $ sometimes (|+| n 12) $ n "6*8" #velocity (scale 0.1 0.75 rand)
+tidal> m6 $ (|+| n 12) $ sometimes (|+| n 12) $ n "6*8" #velocity (scale 0.1 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m6 $ (|+| n 12) $ sometimes (|+| n 12) $ n "6*4" #velocity (scale 0.1 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m6 $ (|+| n 12) $ sometimes (|+| n 12) $ n "6*4" #velocity (scale 0.5 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m6 $ (|-| n 24) $ sometimes (|+| n 12) $ n "6*4" #velocity (scale 0.5 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  601880  midi onset:  601819 onset (relative):  "-0.061" , sched:  601819
+and 3 more
+
+tidal> m7 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[6, 13]*8" #velocity (scale 0.5 0.75 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[6, 13]*8" #velocity (scale 0.25 0.5 rand) #dur (scale 0.1 1 rand)
+tidal> m3 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  678756  midi onset:  678711 onset (relative):  "-0.045" , sched:  678711
+and 3 more
+
+tidal> m1 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m1 $ (|-| n 24) $ n "[0]*2" #velocity 0.8
+tidal> m1 $ e 5 8 $ (|-| n 24) $ n "[0]*2" #velocity 0.8
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "6*8" #velocity (scale 0.1 0.5 rand)
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "6*8" #velocity (scale 0.1 0.5 rand) #modwheel (scale 0.0 1.0 rand)
+tidal> m7 $ (|+| n 12) $ sometimes (|-| n 12) $ n "[6, 13]*8" #velocity (scale 0.25 0.5 rand) #dur (scale 0.1 1 rand)
+tidal> m3 silence
+tidal> m7 silence
+tidal> m7 $ slow 8 $ (|+| n 12) $ sometimes (|-| n 12) $ n "[6, 13]*8" #velocity (scale 0.25 0.5 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ slow 8 $ (|+| n 12) $ sometimes (|-| n 12) $ n "[6, 13]*8" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ slow 8 $ (|+| n 24) $ sometimes (|-| n 12) $ n "6" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ slow 4 $ (|+| n 24) $ sometimes (|-| n 12) $ n "6" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ e 5 8 $ slow 4 $ (|+| n 24) $ sometimes (|-| n 12) $ n "6" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ e 5 8 $ slow 4 $ (|+| n 24) $ rarely (|-| n 12) $ n "6" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "[-1, 11]" #velocity (scale 0.1 0.5 rand)
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "[-1, 11]*2" #velocity (scale 0.1 0.5 rand)
+tidal> m7 $ e 5 8 $ slow 4 $ (|+| n 24) $ sometimes (|-| n 12) $ n "11" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m6 $ (|-| n 24) $ sometimes (|+| n 12) $ n "4*4" #velocity (scale 0.5 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m6 $ (|-| n 24) $ every 4 (|+| n 1) $ n "4*4" #velocity (scale 0.5 0.75 rand) #dur (scale 0.1 10 rand)
+tidal> m3 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4, -1*5]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4, -2*5]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4, 2*5]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4, 8*5]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 3]" #velocity 0.8
+tidal> m3 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m3 $ slow 2$ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m7 $ e 5 8 $ fast 4 $ (|+| n 24) $ sometimes (|-| n 12) $ n "11" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m7 $ e 5 8 $ fast 4 $ (|+| n 12) $ sometimes (|-| n 12) $ n "11" #velocity (scale 0.25 1.0 rand) #dur (scale 0.1 1 rand)
+tidal> m3 $ (|-| n 24) $ n "[~ 4]" #velocity 0.8
+tidal> m6 silence
+tidal> m7 silence
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "[-1, 11]*4" #velocity (scale 0.1 0.5 rand)
+tidal> m4 $ (|-| n 24) $ (sometimes (|+| n 12))$ n "[-1, 11]*4" #velocity (scale 0.1 0.5 rand) #dur (0.1)
+tidal> m4 $ (|-| n 24) $ (every 2 (|+| n 12))$ n "[-1, 11]*4" #velocity (scale 0.1 0.5 rand) #dur (0.1)
+tidal> m4 $ (|-| n 24) $ (every 2 (|+| n 12))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.1)
+tidal> m4 $ (|-| n 24) $ (every 2 (|+| n 12))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m4 $ (|-| n 24) $ (every 2 (|+| n 1))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m4 $ (|-| n 12) $ (every 2 (|+| n 1))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m5 $ (|-| n 12) $ (every 2 (|+| n 1))$ n "[-1, 6]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m6 $ sometimes (|-| n 12) $ (every 2 (|+| n 1))$ n "[-1, 6]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m6 $ sometimes (|-| n 12) $ (every 2 (|+| n 12))$ n "[-1, 6]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m6 $ sometimes (|-| n 12) $ (every 2 (|+| n 13))$ n "[-1, 6]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m7 $  (|+| n 12) $ (every 2 (|+| n 13))$ n "[-1, 6]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m7 $  (|+| n 12) $ (every 2 (|+| n 13))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> m7 $  (|+| n 24) $ (every 2 (|+| n 13))$ n "[-1]*8" #velocity (scale 0.1 0.5 rand) #dur (0.05)
+tidal> cps 0.5
+tidal> cps 1.0
+tidal> cps 0.5
+tidal> m1 silence
+tidal> m2 silence
+tidal> m3 silence
+tidal> m4 silence
+tidal> m5 silence
+tidal> m6 silence
+tidal> m7 silence
+tidal> 

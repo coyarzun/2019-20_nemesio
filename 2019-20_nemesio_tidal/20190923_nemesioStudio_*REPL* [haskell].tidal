@@ -1,0 +1,202 @@
+GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /Users/coyarzun/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config/Tidal/ghci-tidal.conf
+tidal> import Sound.Tidal.MIDI.Context
+tidal> devices <- midiDevices
+tidal> m1 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 1"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  111  midi onset:  0 onset (relative):  "-0.110" , sched:  0
+and 3 more
+
+tidal> m2 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  4485  midi onset:  4386 onset (relative):  "-0.099" , sched:  4386
+and 3 more
+
+tidal> m3 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  8361  midi onset:  8270 onset (relative):  "-0.091" , sched:  8270
+and 3 more
+
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 3 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [178,11,127] midi now  12610  midi onset:  12553 onset (relative):  "-0.057" , sched:  12553
+and 3 more
+
+tidal> m5 <- midiStream devices "Dispositivo MIDI USB Puerto 2" 2 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 2"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 2'
+tidal> late [177,11,127] midi now  18733  midi onset:  18607 onset (relative):  "-0.125" , sched:  18607
+and 3 more
+
+tidal> m6 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  23486  midi onset:  23382 onset (relative):  "-0.104" , sched:  23382
+and 3 more
+
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [176,11,127] midi now  27986  midi onset:  27866 onset (relative):  "-0.120" , sched:  27866
+and 3 more
+
+tidal> m1 $ (|-| n 24)  $ n "0" #velocity (1.0)
+tidal> m1 $ (|-| n 24)  $ n "0*2" #velocity (1.0)
+tidal> m1 silence
+tidal> m1 $ (|-| n 24)  $ n "0*2" #velocity (1.0)
+tidal> m2 $ (|-| n 24) $ n "6*4" #velocity (scale 0.6 1.0 rand)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m3 $ slow 2 $ (|-| n 24) $ n "~ 3 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 2 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 1 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 4 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 2 "
+tidal> m3 $ slow 2 $ (|-| n 24) $ n "~ 3 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 4 "
+tidal> m7 $ n "11"
+tidal> m7 silence
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  3610611  midi onset:  3610565 onset (relative):  "-0.046" , sched:  3610565
+and 3 more
+
+tidal> m7 silence
+tidal> m7 $ n "11"
+tidal> m7 silence
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  3762737  midi onset:  3762645 onset (relative):  "-0.091" , sched:  3762645
+and 3 more
+
+tidal> m7 $ n "11"
+tidal> m7 $ n "11"
+tidal> 
+tidal> m6 $ sometimes (|+| n 12) $ n "-8*4"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 2 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 1 $ n "4*8"
+tidal> m4 silence
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [176,11,127] midi now  3987112  midi onset:  3987056 onset (relative):  "-0.056" , sched:  3987056
+and 3 more
+
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 2 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m6 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m1 silence
+tidal> m2 silence
+tidal> m3 silence
+tidal> m4 silence
+tidal> m5 silence
+tidal> m6 silence
+tidal> m7 silence
+tidal> m1 $ (|-| n 24)  $ n "0*2" #velocity (1.0)
+tidal> m1 silence
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m1 $ (|-| n 24) $ e 5 8 $ n 0
+tidal> m1 $ (|-| n 24) $ e 5 8 $ n 0 #velocity 1.0
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 4 "
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m6 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m2 $ (|-| n 24) $ n "6*4" #velocity (scale 0.6 1.0 rand)
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m7 $ n 4
+tidal> m7 $ sometimes (|+| n 12) $ n 4
+tidal> m7 $ sometimes (|+| n 12) $ n 4 #dur 4.0
+tidal> m1 silence
+tidal> m3 silence
+tidal> m5 silence
+tidal> m4 silence
+tidal> m2 silence
+tidal> m7 silence
+tidal> m6 silence
+tidal> m2 $ (|-| n 24) $ n "6*4" #velocity (scale 0.6 1.0 rand)
+tidal> m1 $ (|-| n 24) $ e 5 8 $ n 0 #velocity 1.0
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m7 $ sometimes (|+| n 12) $ n 4
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32"
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 12) $ slow 4 $ n "4*32"
+tidal> m6 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 4 "
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 2 "
+tidal> m1 silence
+tidal> m5 silence
+tidal> m3 silence
+tidal> m4 silence
+tidal> m5 silence
+tidal> m2 silence
+tidal> m7 silence
+tidal> m6 silence
+tidal> m2 $ sometimes (|+| n 12) $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m2 $ sometimes (|+| n 24) $ (|-| n 24) $ n "6*8" #velocity (scale 0.6 1.0 rand)
+tidal> m1 $ (|-| n 24) $ every 8 (e 5 8) $ n 0 #velocity 1.0
+tidal> m7 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 24) $ e 5 8 $ slow 4 $ n "4*32"
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32" #modwheel (scale 0.0 1.0 rand)
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 2 " #velocity (1.0)
+tidal> m6 $ n 4
+tidal> m6 $ sometimes (|+| n 24) $ n 4
+tidal> m6 $ sometimes (|+| n 24) $ n 4 #dur (scale 0.1 10 rand)
+tidal> m6 $ sometimes (|+| n 24) $ n 4 #dur (scale 0.1 10 rand) #velocity 1.0
+tidal> m6 $ sometimes (|+| n 24) $ n 4*8 #dur (scale 0.1 10 rand) #velocity 1.0
+
+<interactive>:114:29: error:
+    • No instance for (Num
+                         (containers-0.5.7.1:Data.Map.Base.Map Param Value))
+        arising from a use of ‘*’
+    • In the first argument of ‘(#)’, namely ‘n 4 * 8’
+      In the first argument of ‘(#)’, namely
+        ‘n 4 * 8 # dur (scale 0.1 10 rand)’
+      In the second argument of ‘($)’, namely
+        ‘n 4 * 8 # dur (scale 0.1 10 rand) # velocity 1.0’
+tidal> m6 $ sometimes (|+| n 24) $ n "4*4" #dur (scale 0.1 10 rand) #velocity 1.0
+tidal> m6 $ sometimes (|+| n 24) $ n "4*4" #dur (scale 0.1 4 rand) #velocity 1.0
+tidal> m6 $ sometimes (|+| n 24) $ n "4*8" #dur (scale 0.1 4 rand) #velocity 1.0
+tidal> m1 silence
+tidal> m3 silence
+tidal> m4 silence
+tidal> m7 silence
+tidal> m6 silence
+tidal> m5 silence
+tidal> m4 $ sometimes (|+| n 12) $ (|-| n 24) $ slow 4 $ n "4*32" #modwheel (scale 0.0 1.0 rand)
+tidal> m6 $ sometimes (|+| n 24) $ n 4 #dur (scale 0.1 10 rand) #velocity 1.0
+tidal> m5 $ sometimes (|+| n 12) $ (|-| n 12) $ slow 4 $ n "4*32"
+tidal> m7 $ (|-| n 12) $ n "[4, 7]*8" #dur (scale 0.1 10 rand)
+tidal> m3 $ slow 1 $ (|-| n 24) $ n "~ 2 "
+tidal> m6 $ sometimes (|+| n 24) $ n 4 #dur (scale 0.1 0.2 rand) #velocity 1.0
+tidal> m6 $ sometimes (|+| n 24) $ n 4*8 #dur (scale 0.1 0.2 rand) #velocity 1.0
+
+<interactive>:130:29: error:
+    • No instance for (Num
+                         (containers-0.5.7.1:Data.Map.Base.Map Param Value))
+        arising from a use of ‘*’
+    • In the first argument of ‘(#)’, namely ‘n 4 * 8’
+      In the first argument of ‘(#)’, namely
+        ‘n 4 * 8 # dur (scale 0.1 0.2 rand)’
+      In the second argument of ‘($)’, namely
+        ‘n 4 * 8 # dur (scale 0.1 0.2 rand) # velocity 1.0’
+tidal> m6 $ sometimes (|+| n 24) $ e 5 8 $ n 4 #dur (scale 0.1 0.2 rand) #velocity 1.0
+tidal> m1 silence
+tidal> m3 silence
+tidal> m6 silence
+tidal> m5 silence
+tidal> m4 silence
+tidal> m6 silence
+tidal> m2 silence
+tidal> late [145,52,63] midi now  10391969  midi onset:  10391956 onset (relative):  "-0.014" , sched:  10391956
+and 1 more

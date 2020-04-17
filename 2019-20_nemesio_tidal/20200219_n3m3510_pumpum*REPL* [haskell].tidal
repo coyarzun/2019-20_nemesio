@@ -1,0 +1,194 @@
+GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /Users/coyarzun/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config/Tidal/ghci-tidal.conf
+tidal> import Sound.Tidal.MIDI.Context
+tidal> devices <- midiDevices
+tidal> m1 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 1"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  22  midi onset:  2 onset (relative):  "-0.020" , sched:  2
+and 3 more
+
+tidal> m2 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  3649  midi onset:  3621 onset (relative):  "-0.028" , sched:  3621
+and 3 more
+
+tidal> m3 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  7150  midi onset:  7049 onset (relative):  "-0.100" , sched:  7049
+and 3 more
+
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [176,11,127] midi now  11149  midi onset:  11046 onset (relative):  "-0.103" , sched:  11046
+and 3 more
+
+tidal> m5 <- midiStream devices "Dispositivo MIDI USB Puerto 2" 2 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 2"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 2'
+tidal> late [177,11,127] midi now  19775  midi onset:  19693 onset (relative):  "-0.080" , sched:  19693
+and 3 more
+
+tidal> m6 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  23651  midi onset:  23618 onset (relative):  "-0.033" , sched:  23618
+and 3 more
+
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  28149  midi onset:  28119 onset (relative):  "-0.030" , sched:  28119
+and 3 more
+
+tidal> m1 $ n 0
+tidal> m1 $ n "0*2" #√elocity 1.0
+
+<interactive>:18:14: error:
+    • Variable not in scope: (#√) :: IO () -> t0 -> t
+    • Perhaps you meant ‘#’ (imported from Sound.Tidal.Context)
+
+<interactive>:18:16: error:
+    • Variable not in scope: elocity :: Double -> t0
+    • Perhaps you meant ‘velocity’ (imported from Sound.Tidal.Context)
+tidal> m1 $ n "0*2" #velocity 1.0
+tidal> m1 $ (|-| n 24) $ n "0*2" #velocity 1.0
+tidal> m2 $ (|-| n 24) $ n "6*2" #velocity (scale 0.4 0.8 rand)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.4 0.8 rand)
+tidal> m3 $ (|-| n 24) $ n "~ 3" #velocity 0.9
+tidal> m3 $ (|-| n 24) $ n "~ 4" #velocity 0.9
+tidal> m4 $ (|-| n 24) $ n "-1*8"
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "-1*8"
+tidal> m6 $ (|-| n 0) $ sometimes (|-| n 12) $ n "[-1, 6]*8"
+tidal> m6 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[2]*8" #dur 10
+tidal> m6 $ e 5 8 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[2]*8" #dur 10
+tidal> m6 $ e 5 8 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[2]*8" #dur 1
+tidal> m6 $ (|-| n 0) $ sometimes (|-| n 12) $ n "[-1, 6]*8"
+tidal> m7$ e 5 8 $ (|+| n 24) $ sometimes (|-| n 12) $ n "[2]*8" #dur 10
+tidal> m3 silence
+tidal> m3 $ (|-| n 24) $ n "~ 4" #velocity 0.9
+tidal> m3 silence
+tidal> m6 silence
+tidal> m7 silence
+tidal> m1 $ e 5 8 $ (|-| n 24) $ n "0*2" #velocity 1.0
+tidal> m1 $ every 4 ( e 5 8 ) $ (|-| n 24) $ n "0*2" #velocity 1.0
+tidal> m3 $ (|-| n 24) $ n "~ 4" #velocity 0.9
+tidal> m3 silence
+tidal> m2 silence
+tidal> m1 silence
+tidal> m4 silence
+tidal> m5 silence
+tidal> m6 silence
+tidal> m7 silence
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> --voodoochild/: n3M3510
+tidal> --asimtria15: PUMPUMYACHKAN
+tidal> 
+tidal> 
+tidal> --
+tidal> m1 $ n 0
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> 
+tidal> m
+
+<interactive>:69:1: error: Variable not in scope: m
+tidal> 
+tidal> 
+tidal> m1 $ n "[0, 6*8]"
+tidal> m1 $ (|-| n 24) $ n "[0, 6*8]"
+tidal> m1 $ (|-| n 24) $ n "[0*2, 6*8]" #velocity (1.0)
+tidal> m1 $ (|-| n 24) $ n "6" #velocity (scale 0.2 0.3 rand)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.2 0.3 rand)
+tidal> m2 $ (|-| n 24) $ n "6*8" #velocity (scale 0.2 0.8 rand)
+tidal> m1 $ (|-| n 24) $ n "0*8" #velocity 1.0
+tidal> m3 $ (|-| n 24) $ n " ~ 3"
+tidal> m3 $ (|-| n 24) $ n " ~ 3" #velocity 0.8
+tidal> m1 $ every 2 (e 5 8 ) $ (|-| n 24) $ n "0*2" #velocity 1.0
+tidal> m4 $ (|-| n 24) $ n "-1*8"
+tidal> m4 $ (|-| n 24) $ n "-1*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "-1*8"
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "[-1,6]*8"
+tidal> m1 $ (|-| n 24) $ n "0*8" #velocity 1.0
+tidal> m3 silence
+tidal> m1 $ (|-| n 0) $ n "[0*2, 6*8]" #velocity 1.0
+tidal> m6 silence
+tidal> m1 $ (|-| n 0) $ sometimes (|-| n 1) $ n "[0*2, 6*8]" #velocity 1.0
+tidal> m1 $ (|-| n 24) $ sometimes (|-| n 1) $ n "[0*2, 6*8]" #velocity 1.0
+tidal> m3 $ (|-| n 24) $ n " ~ 4" #velocity 0.8
+tidal> m1 $ (|-| n 24) $ sometimes (|-| n 1) $ n "[0*2]" #velocity 1.0
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "[-1,6]*8"
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "2*8"
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 24) $ n "2*8"
+tidal> m7 $ (|+| n 12) $ sometimes (|+| n 12) $ n "2*8"
+tidal> m7 $ (|+| n 12) $ sometimes (|+| n 12) $ n "2*8" #dur (scale 0.1 10 rand)
+tidal> m7 $ e 5 8 $ (|+| n 12) $ sometimes (|+| n 12) $ n "2*8" #dur (scale 0.1 10 rand)
+tidal> m7 $ every 2 (e 5 8) $ (|+| n 12) $ sometimes (|+| n 12) $ n "2*8" #dur (scale 0.1 10 rand)
+tidal> m4 $ (|-| n 24) $ sometimes (|+| n 12) $ n "-1*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m4 $ every 2 (|+| n 1) $ (|-| n 24) $ sometimes (|+| n 12) $ n "-1*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m1 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> m1 $ e 5 8 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "0*8"
+tidal> m5 $ (|-| n 12) $ sometimes (|+| n 12) $ n "2*8"
+tidal> m5 $ (|-| n 0) $ sometimes (|+| n 12) $ n "2*8"
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "[-1,6]*8"
+tidal> m7 silence
+tidal> m3 silence
+tidal> m5 silence
+tidal> cps 0.75
+tidal> m1 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> m4 $ (|-| n 24) $ n "2*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "[2,9]*8"
+tidal> m6 $ (|-| n 12) $ sometimes (|+| n 12) $ n "[2,9]*8" #dur (0.5)
+tidal> m3 $ (|-| n 24) $ n " ~ 4" #velocity 0.8
+tidal> m5 $ (|-| n 24) $ n "2*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m7 $ every 2 (e 5 8) $ (|+| n 12) $ sometimes (|+| n 12) $ n "-3" #dur (scale 0.1 10 rand)
+tidal> cps 0.8
+tidal> cps 0.85
+tidal> cps 0.9
+tidal> cps 0.95
+tidal> cps 1.0
+tidal> cps 1.05
+tidal> cps 1.15
+tidal> cps 1.25
+tidal> cps 1.35
+tidal> m1 $ e 5 8 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> m1 $ every 4 (fast 4) $ e 5 8 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> cps 0.75
+tidal> m1 silence
+tidal> m1 $ (|-| n 24) $ n "[0*2]" #velocity 1.0
+tidal> m4 $ (|-| n 24) $ soemtimes (|+| n 12) $ n "2*8" #modwheel (scale 0.0 1.0 rand)
+
+<interactive>:134:19: error:
+    • Variable not in scope:
+        soemtimes
+          :: (ParamPattern -> ParamPattern) -> ParamPattern -> ParamPattern
+    • Perhaps you meant ‘sometimes’ (imported from Sound.Tidal.Context)
+tidal> m4 $ (|-| n 24) $ sometimes (|+| n 12) $ n "2*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m5 $ (|-| n 24) $ sometimes (|+| n 12) $ n "6*8" #modwheel (scale 0.0 1.0 rand)
+tidal> m6 $ (|+| n 0) $ sometimes (|+| n 12) $ n "[2,9]*8"
+tidal> m3 silence
+tidal> m5 silence
+tidal> m6 silence
+tidal> m1 silence
+tidal> m7 silence
+
+tidal> 
+tidal> m4 silence
+tidal> m1 silence
+tidal> m2 silence
+tidal> 

@@ -1,0 +1,41 @@
+GHCi, version 8.0.2: http://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /Users/coyarzun/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/config/Tidal/ghci-tidal.conf
+tidal> import Sound.Tidal.MIDI.Context
+tidal> devices <- midiDevices
+tidal> m1 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 1"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> 
+late [185,11,127] midi now  87  midi onset:  0 onset (relative):  "-0.086" , sched:  0
+and 3 more
+tidal> m2 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [185,11,127] midi now  5836  midi onset:  5730 onset (relative):  "-0.105" , sched:  5730
+and 3 more
+
+tidal> m3 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 10 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> 
+late [185,11,127] midi now  11085  midi onset:  10958 onset (relative):  "-0.127" , sched:  10958
+and 3 more
+tidal> m4 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 1 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+late [176,11,127] midi now  15587  midi toindsaelt>:   15587 onset (relative):  "-0.000" , sched:  15587
+and 3 more
+
+tidal> m5 <- midiStream devices "Dispositivo MIDI USB Puerto 2" 2 synthController
+Opened: "CoreMIDI": "Dispositivo MIDI USB Puerto 2"
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 2'
+tidal> 
+late [177,11,127] midi now  20711  midi onset:  20660 onset (relative):  "-0.050" , sched:  20660
+and 3 more
+tidal> m6 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
+Cached Device Output
+Successfully initialized Device 'Dispositivo MIDI USB Puerto 1'
+tidal> late [177,11,127] midi now  25457  midi onset:  25437 onset (relative):  "-0.020" , sched:  25437
+and 3 more
+
+tidal> m7 <- midiStream devices "Dispositivo MIDI USB Puerto 1" 2 synthController
